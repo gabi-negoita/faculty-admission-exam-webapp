@@ -1,0 +1,487 @@
+/*--------------------------------------------------
+UNIVERSITATE [cod_u, den_u, adresa_u]
+	cod_u -> codul universitatii
+	den_u -> denumirea universitatii
+	adresa_u -> adresa universitatii
+--------------------------------------------------*/
+CREATE TABLE universitate (
+cod_u 		INTEGER(1) 		NOT NULL,
+den_u 		VARCHAR(28) 	NOT NULL,
+adresa_u 	VARCHAR(30) 	NOT NULL,
+PRIMARY KEY (cod_u));
+
+INSERT INTO universitate VALUES (1, 'Universitatea Dunarea de Jos', 'Str. Domneasca, Nr. 47, Galati');
+
+/*----------------------------------------------------------------------
+FACULTATE [cod_f, den_f, adresa_f, cod_u]
+	cod_f -> codul facultatii
+	den_f -> denumirea facultatii
+	adresa_f -> adresa facultatii
+	cod_u -> codul universitatii din tabela universitate
+----------------------------------------------------------------------*/
+CREATE TABLE facultate (
+cod_f 		INTEGER(2) 			NOT NULL,
+den_f 		VARCHAR(60) 		NOT NULL,
+adresa_f 	VARCHAR(40)			NOT NULL,
+cod_u 		INTEGER(1) 			NOT NULL,
+PRIMARY KEY (cod_f),
+FOREIGN KEY (cod_u) REFERENCES universitate(cod_u));
+
+INSERT INTO facultate VALUES (11, 'Inginerie', 'Str. Domneasca, Nr. 111, Galati', 1);
+INSERT INTO facultate VALUES (12, 'Arhitectura Navala', 'Str. Stiintei, Nr. 2, Galati', 1);
+INSERT INTO facultate VALUES (13, 'Stiinta si Ingineria Alimentelor', 'Str. Domneasca, Nr. 111, Galati', 1);
+INSERT INTO facultate VALUES (14, 'Automatica, Calculatoare, Inginerie Electrica si Electronica', 'Str. Stiintei, Nr. 2, Galati', 1);
+INSERT INTO facultate VALUES (15, 'Educatie Fizica si Sport', 'Str. Garii Nr. 63-65, Galati', 1);
+INSERT INTO facultate VALUES (16, 'Litere', 'Str. Domneasca, Nr. 111, Galati', 1);
+INSERT INTO facultate VALUES (17, 'Stiinte si Mediu', 'Str. Domneasca, Nr. 111, Galati', 1);
+INSERT INTO facultate VALUES (18, 'Istorie, Filosofie si Teologie', 'Str. Domneasca, Nr. 111, Galati', 1);
+INSERT INTO facultate VALUES (19, 'Inginerie si Agronomie din Braila', 'Str. Calarasilor, Nr. 29, Braila', 1);
+INSERT INTO facultate VALUES (20, 'Economie si Administrarea Afacerilor', 'Str. Nicolae Balcescu, Nr. 59-61, Galati', 1);
+INSERT INTO facultate VALUES (21, 'Stiinte Juridice, Sociale si Politice', 'Str. Domneasca, Nr. 111, Galati', 1);
+INSERT INTO facultate VALUES (22, 'Medicina si Farmacie', 'Str. Al. I. Cuza Nr. 35, Galati', 1);
+INSERT INTO facultate VALUES (23, 'Arte', 'Str. Domneasca, Nr. 111, Galati', 1);
+
+/*--------------------------------------------------------------
+DOMENIU [cod_d, den_d, cod_f]
+	cod_d -> codul domeniului
+	den_d -> denumirea domeniului
+	cod_f -> codul facultatii din tabela facultate
+--------------------------------------------------------------*/
+CREATE TABLE domeniu (
+cod_d 		INTEGER(3) 			NOT NULL,
+den_d 		VARCHAR(67) 		NOT NULL,
+cod_f 		INTEGER(2) 			NOT NULL,
+PRIMARY KEY (cod_d),
+FOREIGN KEY (cod_f) REFERENCES facultate(cod_f));
+
+INSERT INTO domeniu VALUES (111, 'Inginerie mecanica', 11);
+INSERT INTO domeniu VALUES (112, 'Inginerie industriala', 11);
+INSERT INTO domeniu VALUES (113, 'Ingineria autovehiculelor', 11);
+INSERT INTO domeniu VALUES (114, 'Ingineria mediului', 11);
+INSERT INTO domeniu VALUES (115, 'Inginerie si management', 11);
+INSERT INTO domeniu VALUES (116, 'Ingineria materialelor', 11);
+INSERT INTO domeniu VALUES (117, 'Stiinte ingineresti aplicate', 11);
+INSERT INTO domeniu VALUES (121, 'Arhitectura navala', 12);
+INSERT INTO domeniu VALUES (131, 'Ingineria produselor alimentare', 13);
+INSERT INTO domeniu VALUES (132, 'Zootehnie', 13);
+INSERT INTO domeniu VALUES (141, 'Inginerie electronica, telecomunicatii si tehnologii informationale', 14);
+INSERT INTO domeniu VALUES (142, 'Inginerie electrica', 14);
+INSERT INTO domeniu VALUES (143, 'Ingineria sistemelor', 14);
+INSERT INTO domeniu VALUES (144, 'Calculatoare si tehnologia informatiei', 14);
+INSERT INTO domeniu VALUES (151, 'Educatie fizica si sport', 15);
+INSERT INTO domeniu VALUES (152, 'Kinetoterapie', 15);
+INSERT INTO domeniu VALUES (153, 'Stiinte ale educatiei', 15);
+INSERT INTO domeniu VALUES (161, 'Limba si literatura', 16);
+INSERT INTO domeniu VALUES (162, 'Limbi moderne aplicate', 16);
+INSERT INTO domeniu VALUES (163, 'Stiinte ale comunicarii', 16);
+INSERT INTO domeniu VALUES (171, 'Matematica', 17);
+INSERT INTO domeniu VALUES (172, 'Stiinta mediului', 17);
+INSERT INTO domeniu VALUES (173, 'Fizica', 17);
+INSERT INTO domeniu VALUES (174, 'Chimie', 17);
+INSERT INTO domeniu VALUES (181, 'Istorie', 18);
+INSERT INTO domeniu VALUES (182, 'Relatii internationale si studii europene', 18);
+INSERT INTO domeniu VALUES (183, 'Filosofie', 18);
+INSERT INTO domeniu VALUES (184, 'Sociologie', 18);
+INSERT INTO domeniu VALUES (185, 'Arte vizuale', 18);
+INSERT INTO domeniu VALUES (186, 'Teologie', 18);
+INSERT INTO domeniu VALUES (191, 'Inginerie mecanica', 19);
+INSERT INTO domeniu VALUES (192, 'Inginerie si management', 19);
+INSERT INTO domeniu VALUES (193, 'Agronomie', 19);
+INSERT INTO domeniu VALUES (201, 'Marketing', 20);
+INSERT INTO domeniu VALUES (202, 'Finante', 20);
+INSERT INTO domeniu VALUES (203, 'Management', 20);
+INSERT INTO domeniu VALUES (204, 'Administrarea afacerilor', 20);
+INSERT INTO domeniu VALUES (205, 'Cibernetica, statistica si informatica economica', 20);
+INSERT INTO domeniu VALUES (206, 'Contabilitate', 20);
+INSERT INTO domeniu VALUES (207, 'Economie si afaceri internationale', 20);
+INSERT INTO domeniu VALUES (211, 'Drept', 21);
+INSERT INTO domeniu VALUES (212, 'Stiinte administrative', 21);
+INSERT INTO domeniu VALUES (221, 'Sanatate', 22);
+INSERT INTO domeniu VALUES (231, 'Teatru si artele spectacolului', 23);
+INSERT INTO domeniu VALUES (232, 'Muzica', 23);
+INSERT INTO domeniu VALUES (233, 'Arte vizuale', 23);
+
+/*---------------------------------------------------------------------------------------------------------------
+EXAMEN [cod_e, den_e, locatie, data, cod_s]
+	cod_e -> codul examenului
+	den_e -> denumirea examenului
+	locatie -> locatia unde  se va desfasura examenul (NULL = NESPECIFICAT INCA)
+	data -> data la care se va desfasura examenul (NULL = NESPECIFICAT INCA)
+	cod_s -> codul specializarii din tabela specializare
+---------------------------------------------------------------------------------------------------------------*/
+CREATE TABLE examen (
+cod_e 		INTEGER(2) 			NOT NULL,
+den_e 		VARCHAR(68) 		NOT NULL,
+locatie 	VARCHAR(10),
+data 		DATE,
+PRIMARY KEY (cod_e));
+
+INSERT INTO examen VALUES (1, 'Test grila (30 intrebari) - Algebra (IX,X,XI)', 'AN101', '2020-06-01');
+INSERT INTO examen VALUES (2, 'Test grila (100 intrebari) - Biologie (XI)', 'AN102', '2020-06-02');
+INSERT INTO examen VALUES (3, 'Test grila (100 intrebari) - 60: Chimie organica + 40: Biologie (XI)', 'AN103', '2020-06-03');
+INSERT INTO examen VALUES (4, 'Test grila (100 intrebari) - 40: Chimie organica + 60: Biologie (XI)', 'AN104', '2020-06-04');
+INSERT INTO examen VALUES (5, 'Proba practica - Aptitudini motrice specifice', 'AN105', '2020-06-05');
+INSERT INTO examen VALUES (6, 'Proba practica - Desen si culoare', 'AN106', '2020-06-06');
+INSERT INTO examen VALUES (7, 'Proba practica - Calitati ritmice si muzicale', 'AN107', '2020-06-07');
+INSERT INTO examen VALUES (8, 'Proba practica - Canto', 'AN108', '2020-06-08');
+INSERT INTO examen VALUES (9, 'Proba practica - Desen', 'AN109', '2020-06-09');
+INSERT INTO examen VALUES (10, 'Interviu - Catehism si Mica Biblie', 'AN110', '2020-06-10');
+
+/*----------------------------------------------------------------------------------------------------
+REGULA_ADMITERE [cod_r, descriere]
+	cod_r -> codul regulii de admitere la facultate
+	descriere -> descrierea regulii de admitere la facultate
+	cod_e -> codul examenului  din tabela examen(NULL = FARA EXAMEN)
+----------------------------------------------------------------------------------------------------*/
+CREATE TABLE regula_admitere (
+cod_r 		INTEGER(2) 			NOT NULL,
+descriere 	VARCHAR(92) 		NOT NULL,
+cod_e 		INTEGER(2),
+PRIMARY KEY (cod_r),
+FOREIGN KEY (cod_e) REFERENCES examen(cod_e));
+
+INSERT INTO regula_admitere VALUES (1, 'Medie: 50% medie bacalaureat + 50% medie liceu', null);
+INSERT INTO regula_admitere VALUES (2, 'Medie: 50% medie bacalaureat + 50% nota examen', 1);
+INSERT INTO regula_admitere VALUES (3, 'Certificat competenta lingvistica + Medie: 50% medie bacalaureat + 50% medie liceu', null);
+INSERT INTO regula_admitere VALUES (4, 'Testare capacitate motrica generala + Medie: 50% medie bacalaureat + 50% nota proba practica', 5);
+INSERT INTO regula_admitere VALUES (5, 'Testare aptitudini pedagogice + Medie: 50% medie bacalaureat + 50% medie liceu', null);
+INSERT INTO regula_admitere VALUES (6, 'Testare aptitudini socio-umane + Medie: 50% medie bacalaureat + 50% nota proba practica', 6);
+INSERT INTO regula_admitere VALUES (7, 'Testare aptitudini socio-umane + Medie: 50% medie bacalaureat + 50% nota interviu', 10);
+INSERT INTO regula_admitere VALUES (8, 'Medie: 100% nota examen', 2);
+INSERT INTO regula_admitere VALUES (9, 'Medie: 100% nota examen', 3);
+INSERT INTO regula_admitere VALUES (10, 'Medie: 100% nota examen', 4);
+INSERT INTO regula_admitere VALUES (11, 'Medie: 100% nota proba practica', 7);
+INSERT INTO regula_admitere VALUES (12, 'Medie: 100% nota proba practica', 8);
+INSERT INTO regula_admitere VALUES (13, 'Medie: 100% nota proba practica', 9);
+
+
+/*-------------------------------------------------------------------------------------------------
+SPECIALIZARE [cod_s, den_s, durata_ani, cod_r, cod_d]
+	cod_s -> codul specializarii
+	den_s -> denumirea specializarii
+	durata_ani -> durata in ani a specializarii
+	cod_r -> codul regulii de admitere la facultate din tabela regula_admitere
+	cod_d -> codul domeniului din tabela domeniu
+-------------------------------------------------------------------------------------------------*/
+CREATE TABLE specializare (
+cod_s 		INTEGER(4) 			NOT NULL,
+den_s 		VARCHAR(79) 		NOT NULL,
+durata_ani 	INTEGER(1) 			NOT NULL,
+cod_r 		INTEGER(2) 			NOT NULL,
+cod_d 		INTEGER(3) 			NOT NULL,
+PRIMARY KEY (cod_s),
+FOREIGN KEY (cod_r) REFERENCES regula_admitere(cod_r),
+FOREIGN KEY (cod_d) REFERENCES domeniu(cod_d));
+
+INSERT INTO specializare VALUES (1111, 'Sisteme si echipamente termice', 4, 1, 111);
+INSERT INTO specializare VALUES (1112, 'Inginerie mecanica', 4, 1, 111);
+INSERT INTO specializare VALUES (1121, 'Tehnologia constructiilor de masini', 4, 1, 112);
+INSERT INTO specializare VALUES (1131, 'Autovehicule rutiere', 4, 1, 113);
+INSERT INTO specializare VALUES (1141, 'Ingineria si protectia mediului in industrie', 4, 1, 114);
+INSERT INTO specializare VALUES (1142, 'Amenajari hidrotehnice si protectia mediului', 4, 1, 114);
+INSERT INTO specializare VALUES (1151, 'Inginerie economica industriala', 4, 1, 115);
+INSERT INTO specializare VALUES (1161, 'Stiinta materialelor', 4, 1, 116);
+INSERT INTO specializare VALUES (1162, 'Informatica aplicata in ingineria materialelor', 4, 1, 116);
+INSERT INTO specializare VALUES (1171, 'Inginerie medicala', 4, 1, 117);
+INSERT INTO specializare VALUES (1211, 'Arhitectura navala', 4, 1, 121);
+INSERT INTO specializare VALUES (1212, 'Sisteme si echipamente navale', 4, 1, 121);
+INSERT INTO specializare VALUES (1311, 'Ingineria produselor alimentare', 4, 1, 131);
+INSERT INTO specializare VALUES (1312, 'Controlul si expertiza produselor alimentare', 4, 1, 131);
+INSERT INTO specializare VALUES (1313, 'Tehnologie si control in alimentatie publica', 4, 1, 131);
+INSERT INTO specializare VALUES (1314, 'Ingineria produselor alimentare (in limba engleza)', 4, 3, 131);
+INSERT INTO specializare VALUES (1315, 'Controlul si expertiza produselor alimentare (in limba engleza)', 4, 3, 131);
+INSERT INTO specializare VALUES (1321, 'Piscicultura si acvacultura', 4, 1, 132);
+INSERT INTO specializare VALUES (1411, 'Electronica aplicata', 4, 1, 141);
+INSERT INTO specializare VALUES (1421, 'Electronica de putere si actionari electrice', 4, 1, 142);
+INSERT INTO specializare VALUES (1422, 'Electromecanica', 4, 1, 142);
+INSERT INTO specializare VALUES (1423, 'Inginerie electrica si calculatoare', 4, 1, 142);
+INSERT INTO specializare VALUES (1431, 'Automatica si informatica aplicata', 4, 1, 143);
+INSERT INTO specializare VALUES (1441, 'Calculatoare', 4, 2, 144);
+INSERT INTO specializare VALUES (1511, 'Educatie fizica si sportiva', 3, 4, 151);
+INSERT INTO specializare VALUES (1521, 'Kinetoterapie si motricitate speciala', 3, 4, 152);
+INSERT INTO specializare VALUES (1531, 'Pedagogia invatamantului primar si prescolar', 3, 5, 153);
+INSERT INTO specializare VALUES (1611, 'Limba si literatura romana - engleza / Limba si literatura engleza - romana', 3, 1, 161);
+INSERT INTO specializare VALUES (1612, 'Limba si literatura romana - franceza / Limba si literatura franceza - romana', 3, 1, 161);
+INSERT INTO specializare VALUES (1613, 'Limba si literatura engleza - franceza / Limba si literatura franceza - engleza', 3, 1, 161);
+INSERT INTO specializare VALUES (1621, 'Limbi moderne aplicate (engleza-franceza)', 3, 1, 162);
+INSERT INTO specializare VALUES (1631, 'Jurnalism', 3, 1, 163);
+INSERT INTO specializare VALUES (1711, 'Matematica informatica', 3, 1, 171);
+INSERT INTO specializare VALUES (1721, 'Stiinta mediului', 3, 1, 172);
+INSERT INTO specializare VALUES (1731, 'Fizica medicala', 3, 1, 173);
+INSERT INTO specializare VALUES (1741, 'Chimie farmaceutica', 3, 1, 174);
+INSERT INTO specializare VALUES (1811, 'Istorie', 3, 1, 181);
+INSERT INTO specializare VALUES (1821, 'Relatii internationale si studii europene', 3, 1, 182);
+INSERT INTO specializare VALUES (1831, 'Filosofie', 3, 1, 183);
+INSERT INTO specializare VALUES (1841, 'Sociologie', 3, 1, 184);
+INSERT INTO specializare VALUES (1842, 'Resurse umane', 3, 1, 184);
+INSERT INTO specializare VALUES (1851, 'Arta sacra', 3, 6, 185);
+INSERT INTO specializare VALUES (1861, 'Teologie ortodoxa asistenta sociala', 3, 7, 186);
+INSERT INTO specializare VALUES (1911, 'Utilaje tehnologice pentru constructii', 4, 1, 191);
+INSERT INTO specializare VALUES (1912, 'Ingineria si managementul resurselor tehnologice in constructii', 4, 1, 191);
+INSERT INTO specializare VALUES (1913, 'Masini si instalatii pentru agricultura si industrie alimentara', 4, 1, 191);
+INSERT INTO specializare VALUES (1921, 'Inginerie economica in domeniul mecanic', 4, 1, 192);
+INSERT INTO specializare VALUES (1931, 'Agricultura', 4, 1, 193);
+INSERT INTO specializare VALUES (2011, 'Marketing', 3, 1, 201);
+INSERT INTO specializare VALUES (2021, 'Finante si banci', 3, 1, 202);
+INSERT INTO specializare VALUES (2031, 'Management', 3, 1, 203);
+INSERT INTO specializare VALUES (2041, 'Economia comertului, turismului si serviciilor', 3, 1, 204);
+INSERT INTO specializare VALUES (2042, 'Administrarea afacerilor in alimentatia publica', 3, 1, 204);
+INSERT INTO specializare VALUES (2051, 'Informatica economica', 3, 1, 205);
+INSERT INTO specializare VALUES (2061, 'Contabilitate si informatica de gestiune', 3, 1, 206);
+INSERT INTO specializare VALUES (2071, 'Afaceri internationale', 3, 1, 207);
+INSERT INTO specializare VALUES (2111, 'Drept', 4, 1, 211);
+INSERT INTO specializare VALUES (2121, 'Administratie publica', 3, 1, 212);
+INSERT INTO specializare VALUES (2211, 'Farmacie', 5, 9, 221);
+INSERT INTO specializare VALUES (2212, 'Medicina dentara', 6, 10, 221);
+INSERT INTO specializare VALUES (2213, 'Medicina', 6, 10, 221);
+INSERT INTO specializare VALUES (2214, 'Asistenta medicala generala', 4, 8, 221);
+INSERT INTO specializare VALUES (2215, 'Moase', 4, 8, 221);
+INSERT INTO specializare VALUES (2216, 'Tehnica dentara', 3, 8	, 221);
+INSERT INTO specializare VALUES (2311, 'Artele spectacolului (actorie)', 3, 11, 231);
+INSERT INTO specializare VALUES (2321, 'Interpretare muzicala - canto', 4, 12, 232);
+INSERT INTO specializare VALUES (2331, 'Arte plastice (pictura)', 3, 13, 233);
+
+/*------------------------------------------------------------------------------------------------------------------
+CANDIDAT [cod_c, nume, init_tata, prenume, cnp, data_n, den_liceu, medie_liceu, medie_bac]
+	cod_c -> codul candidatului
+	nume -> numele de familie al candidatului
+	init_tata -> initiala tatalui candidatului (NULL = NECUNOSCUT)
+	prenume -> prenumele candidatului
+	cnp -> codul numeric personal al candidatului
+	data_n -> data de nastere a candidatului
+	den_liceu -> denumirea liceului absolvit al candidatului
+	medie_liceu -> media multianuala a liceuului absolvit al candidatului
+	medie_bac -> media la examenul de bacalaureat al candidatului
+------------------------------------------------------------------------------------------------------------------*/
+CREATE TABLE candidat (
+cod_c 			INTEGER(5) 			NOT NULL,
+nume 			VARCHAR(20) 		NOT NULL,
+init_tata 		VARCHAR(1),
+prenume 		VARCHAR(20) 		NOT NULL,
+cnp 			CHAR(13) 			NOT NULL,
+data_n 			DATE 				NOT NULL,
+den_liceu 		VARCHAR(35) 		NOT NULL,
+medie_liceu 	FLOAT(4,2) 		NOT NULL,
+medie_bac 		FLOAT(4,2) 		NOT NULL,
+PRIMARY KEY (cod_c),
+UNIQUE (cnp));
+
+INSERT INTO candidat VALUES (1, 'Popa', 'A', 'Stefan', '1234567891234',  '1990-01-13', 'Liceul Teoretic Mihai Barbu', 9.56, 9.30);
+INSERT INTO candidat VALUES (2, 'Popovici', 'B', 'Catalin', '1234567891235',  '1990-02-13', 'Liceul Teoretic Constantin Brancoveanu', 8.56, 8.30);
+INSERT INTO candidat VALUES (3, 'Dumitru', 'C', 'Miguel', '1234567891236',  '1990-03-13', 'Liceul Teoretic Nicolae Iorga', 7.56, 7.30);
+INSERT INTO candidat VALUES (4, 'Popescu', 'D', 'Laurentiu', '1234567891237',  '1990-04-13', 'Liceul Teoretic Ion Creanga', 6.56, 6.30);
+INSERT INTO candidat VALUES (5, 'Ionescu', 'E', 'Daniel', '1234567891238',  '1990-05-13', 'Liceul Teoretic Mihai Eminescu', 5.56, 5.30);
+
+
+
+/*--------------------------------------------------------------------------------
+LOC [nr_locuri, buget_taxa, cod_s] 
+	nr_locuri -> numarul de locuri disponibile a unei specializari
+	buget_taxa -> forma de finantare (buget sau taxa)
+	cod_s -> codul specializarii din tabela specializare
+--------------------------------------------------------------------------------*/
+CREATE TABLE loc (
+nr_locuri 	INTEGER(4) 		NOT NULL,
+buget_taxa 	VARCHAR(5) 	NOT NULL,
+cod_s 		INTEGER(4) 		NOT NULL,
+FOREIGN KEY (cod_s) REFERENCES specializare(cod_s));
+
+INSERT INTO loc VALUES (20, 'buget', 1111);
+INSERT INTO loc VALUES (39, 'taxa', 1111);
+INSERT INTO loc VALUES (20, 'buget', 1112);
+INSERT INTO loc VALUES (39, 'taxa', 1112);
+INSERT INTO loc VALUES (20, 'buget', 1121);
+INSERT INTO loc VALUES (29, 'taxa', 1121);
+INSERT INTO loc VALUES (30, 'buget', 1131);
+INSERT INTO loc VALUES (5, 'taxa', 1131);
+INSERT INTO loc VALUES (20, 'buget', 1141);
+INSERT INTO loc VALUES (89, 'taxa', 1141);
+INSERT INTO loc VALUES (20, 'buget', 1142);
+INSERT INTO loc VALUES (89, 'taxa', 1142);
+INSERT INTO loc VALUES (20, 'buget', 1151);
+INSERT INTO loc VALUES (30, 'taxa', 1151);
+INSERT INTO loc VALUES (20, 'buget', 1161);
+INSERT INTO loc VALUES (23, 'taxa', 1161);
+INSERT INTO loc VALUES (20, 'buget', 1162);
+INSERT INTO loc VALUES (90, 'taxa', 1162);
+INSERT INTO loc VALUES (20, 'buget', 1171);
+INSERT INTO loc VALUES (90, 'taxa', 1171);
+INSERT INTO loc VALUES (85, 'buget', 1211);
+INSERT INTO loc VALUES (5, 'taxa', 1211);
+INSERT INTO loc VALUES (85, 'buget', 1212);
+INSERT INTO loc VALUES (5, 'taxa', 1212);
+INSERT INTO loc VALUES (40, 'buget', 1311);
+INSERT INTO loc VALUES (156, 'taxa', 1311);
+INSERT INTO loc VALUES (40, 'buget', 1312);
+INSERT INTO loc VALUES (156, 'taxa', 1312);
+INSERT INTO loc VALUES (40, 'buget', 1313);
+INSERT INTO loc VALUES (156, 'taxa', 1313);
+INSERT INTO loc VALUES (0, 'buget', 1314);
+INSERT INTO loc VALUES (35, 'taxa', 1314);
+INSERT INTO loc VALUES (0, 'buget', 1315);
+INSERT INTO loc VALUES (35, 'taxa', 1315);
+INSERT INTO loc VALUES (20, 'buget', 1321);
+INSERT INTO loc VALUES (30, 'taxa', 1321);
+INSERT INTO loc VALUES (30, 'buget', 1411);
+INSERT INTO loc VALUES (15, 'taxa', 1411);
+INSERT INTO loc VALUES (40, 'buget', 1421);
+INSERT INTO loc VALUES (20, 'taxa', 1421);
+INSERT INTO loc VALUES (40, 'buget', 1422);
+INSERT INTO loc VALUES (20, 'taxa', 1422);
+INSERT INTO loc VALUES (28, 'buget', 1423);
+INSERT INTO loc VALUES (2, 'taxa', 1423);
+INSERT INTO loc VALUES (40, 'buget', 1431);
+INSERT INTO loc VALUES (10, 'taxa', 1431);
+INSERT INTO loc VALUES (72, 'buget', 1441);
+INSERT INTO loc VALUES (14, 'taxa', 1441);
+INSERT INTO loc VALUES (36, 'buget', 1511);
+INSERT INTO loc VALUES (92, 'taxa', 1511);
+INSERT INTO loc VALUES (18, 'buget', 1521);
+INSERT INTO loc VALUES (55, 'taxa', 1521);
+INSERT INTO loc VALUES (36, 'buget', 1531);
+INSERT INTO loc VALUES (64, 'taxa', 1531);
+INSERT INTO loc VALUES (40, 'buget', 1611);
+INSERT INTO loc VALUES (110, 'taxa', 1611);
+INSERT INTO loc VALUES (20, 'buget', 1612);
+INSERT INTO loc VALUES (90, 'taxa', 1612);
+INSERT INTO loc VALUES (20, 'buget', 1613);
+INSERT INTO loc VALUES (78, 'taxa', 1613);
+INSERT INTO loc VALUES (18, 'buget', 1621);
+INSERT INTO loc VALUES (38, 'taxa', 1621);
+INSERT INTO loc VALUES (17, 'buget', 1631);
+INSERT INTO loc VALUES (30, 'taxa', 1631);
+INSERT INTO loc VALUES (15, 'buget', 1711);
+INSERT INTO loc VALUES (30, 'taxa', 1711);
+INSERT INTO loc VALUES (15, 'buget', 1721);
+INSERT INTO loc VALUES (30, 'taxa', 1721);
+INSERT INTO loc VALUES (15, 'buget', 1731);
+INSERT INTO loc VALUES (30, 'taxa', 1731);
+INSERT INTO loc VALUES (15, 'buget', 1741);
+INSERT INTO loc VALUES (15, 'taxa', 1741);
+INSERT INTO loc VALUES (18, 'buget', 1811);
+INSERT INTO loc VALUES (51, 'taxa', 1811);
+INSERT INTO loc VALUES (18, 'buget', 1821);
+INSERT INTO loc VALUES (32, 'taxa', 1821);
+INSERT INTO loc VALUES (18, 'buget', 1831);
+INSERT INTO loc VALUES (17, 'taxa', 1831);
+INSERT INTO loc VALUES (18, 'buget', 1841);
+INSERT INTO loc VALUES (82, 'taxa', 1841);
+INSERT INTO loc VALUES (18, 'buget', 1842);
+INSERT INTO loc VALUES (82, 'taxa', 1842);
+INSERT INTO loc VALUES (18, 'buget', 1851);
+INSERT INTO loc VALUES (29, 'taxa', 1851);
+INSERT INTO loc VALUES (10, 'buget', 1861);
+INSERT INTO loc VALUES (20, 'taxa', 1861);
+INSERT INTO loc VALUES (40, 'buget', 1911);
+INSERT INTO loc VALUES (56, 'taxa', 1911);
+INSERT INTO loc VALUES (40, 'buget', 1912);
+INSERT INTO loc VALUES (56, 'taxa', 1912);
+INSERT INTO loc VALUES (40, 'buget', 1913);
+INSERT INTO loc VALUES (56, 'taxa', 1913);
+INSERT INTO loc VALUES (30, 'buget', 1921);
+INSERT INTO loc VALUES (20, 'taxa', 1921);
+INSERT INTO loc VALUES (30, 'buget', 1931);
+INSERT INTO loc VALUES (20, 'taxa', 1931);
+INSERT INTO loc VALUES (21, 'buget', 2011);
+INSERT INTO loc VALUES (39, 'taxa', 2011);
+INSERT INTO loc VALUES (21, 'buget', 2021);
+INSERT INTO loc VALUES (38, 'taxa', 2021);
+INSERT INTO loc VALUES (21, 'buget', 2031);
+INSERT INTO loc VALUES (39, 'taxa', 2031);
+INSERT INTO loc VALUES (21, 'buget', 2041);
+INSERT INTO loc VALUES (38, 'taxa', 2041);
+INSERT INTO loc VALUES (21, 'buget', 2042);
+INSERT INTO loc VALUES (29, 'taxa', 2042);
+INSERT INTO loc VALUES (28, 'buget', 2051);
+INSERT INTO loc VALUES (32, 'taxa', 2051);
+INSERT INTO loc VALUES (21, 'buget', 2061);
+INSERT INTO loc VALUES (39, 'taxa', 2061);
+INSERT INTO loc VALUES (21, 'buget', 2071);
+INSERT INTO loc VALUES (37, 'taxa', 2071);
+INSERT INTO loc VALUES (55, 'buget', 2111);
+INSERT INTO loc VALUES (67, 'taxa', 2111);
+INSERT INTO loc VALUES (35, 'buget', 2121);
+INSERT INTO loc VALUES (38, 'taxa', 2121);
+INSERT INTO loc VALUES (50, 'buget', 2211);
+INSERT INTO loc VALUES (24, 'taxa', 2211);
+INSERT INTO loc VALUES (65, 'buget', 2212);
+INSERT INTO loc VALUES (10, 'taxa', 2212);
+INSERT INTO loc VALUES (90, 'buget', 2213);
+INSERT INTO loc VALUES (35, 'taxa', 2213);
+INSERT INTO loc VALUES (10, 'buget', 2214);
+INSERT INTO loc VALUES (30, 'taxa', 2214);
+INSERT INTO loc VALUES (30, 'buget', 2215);
+INSERT INTO loc VALUES (15, 'taxa', 2215);
+INSERT INTO loc VALUES (30, 'buget', 2216);
+INSERT INTO loc VALUES (15, 'taxa', 2216);
+INSERT INTO loc VALUES (10, 'buget', 2311);
+INSERT INTO loc VALUES (14, 'taxa', 2311);
+INSERT INTO loc VALUES (10, 'buget', 2321);
+INSERT INTO loc VALUES (13, 'taxa', 2321);
+INSERT INTO loc VALUES (10, 'buget', 2331);
+INSERT INTO loc VALUES (19, 'taxa', 2331);
+
+/*------------------------------------------------------------------------------------------------------------
+OPTIUNE_CANDIDAT [cod_o, buget_taxa, cod_c, cod_s]
+	cod_o -> codul optiunii
+	buget_taxa -> forma de finantare pentru care a optat candidatul (buget sau taxa)
+	cod_c -> codul candidatului din tabela candidat
+	cod_s -> codul specializarii din tabela specializare
+------------------------------------------------------------------------------------------------------------*/
+CREATE TABLE optiune_candidat (
+cod_o 			INTEGER(6) 			NOT NULL,
+buget_taxa VARCHAR(5) 		NOT NULL,
+cod_c 			INTEGER(5) 			NOT NULL,
+cod_s 			INTEGER(4) 			NOT NULL,
+PRIMARY KEY (cod_o),
+FOREIGN KEY (cod_c) REFERENCES candidat(cod_c),
+FOREIGN KEY (cod_s) REFERENCES specializare(cod_s));
+
+/*------------------------------------------------------------------------------------------
+REZULTAT [cod_c, cod_e, nota]
+	cod_c -> codul candidatului din tabela candidat
+	cod_e -> codul examenului din tabela examen
+	nota -> nota candidatului la examenul sustinut (NULL = ABSENT)
+-------------------------------------------------------------------------------------------*/
+CREATE TABLE rezultat (
+cod_c 		INTEGER(5) 		NOT NULL,
+cod_e 		INTEGER(1) 		NOT NULL,
+nota 		FLOAT(4,2) 	NOT NULL,
+FOREIGN KEY (cod_c) REFERENCES candidat(cod_c),
+FOREIGN KEY (cod_e) REFERENCES examen(cod_e));
+
+/*-----------------------------------------------------
+USER [cod_u, firstname, lastname, username, password, role]
+	cod_u -> cod utilizator
+	firstname -> numele de familie al utilizatorului
+	lastname -> prenumele utilizatorului
+	username -> numele de utilizator (pentru logare)
+	password -> parola utilizatorului (pentru logare)
+	role -> rolul utilizatorului
+-----------------------------------------------------*/
+CREATE TABLE user (
+cod_u 			INTEGER(3) 		NOT NULL,
+firstname 		VARCHAR(32) 	NOT NULL,
+lastname 		VARCHAR(32)		NOT NULL,
+username 		VARCHAR(256)	NOT NULL,
+password		VARCHAR(256) 	NOT NULL,
+role 			VARCHAR(13) 	NOT NULL,
+PRIMARY KEY (cod_u));
+
+INSERT INTO user VALUES (1, 'Popescu', 'Vasile', 'adm', '123', 'ADMINISTRATOR');
+INSERT INTO user VALUES (2, 'Ionescu', 'Gigel', 'mgr', '123', 'MANAGER');
+INSERT INTO user VALUES (3, 'Dumitru', 'Ionel', 'cnd', '123', 'CANDIDAT');
+
+/*-----------------------------------------------------
+LOG [cod_u, time, action, query]
+	cod_u -> cod utilizator
+	time -> timpul la care s-a realizat actiunea
+	action -> actiunea realizata
+	query -> query-ul executat
+-----------------------------------------------------*/
+CREATE TABLE log (
+cod_u 			INTEGER(3)	 	NOT NULL,
+time 			DATETIME		NOT NULL,
+action 			VARCHAR(6)		NOT NULL,
+query			VARCHAR(255) 	NOT NULL,
+FOREIGN KEY (cod_u) REFERENCES user(cod_u));
